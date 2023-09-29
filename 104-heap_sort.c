@@ -56,4 +56,19 @@ void max_heapify(int *array, size_t size, size_t base, size_t root)
  * algorithm. Prints the array after each swap.
  */
 void heap_sort(int *array, size_t size)
+{
+	int i;
 
+	if (array == NULL || size < 2)
+		return;
+
+	for (i = (size / 2) - 1; i >= 0; i--)
+		max_heapify(array, size, size, i);
+
+	for (i = size - 1; i > 0; i--)
+	{
+		swap_ints(array, array + i);
+		print_array(array, size);
+		max_heapify(array, size, i, 0);
+	}
+}
